@@ -27,8 +27,7 @@ const getCategories = gql`
   }
 `;
 const { data } = await useAsyncQuery(getCategories);
-console.log(data.value?.categories.data, "from header");
-categories.value = data.value?.categories.data;
+categories.value = data.value?.categories?.data;
 </script>
 
 <template>

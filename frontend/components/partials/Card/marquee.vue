@@ -5,10 +5,7 @@
         >News</a
       >
       <h3 class="post__title typescale-1">
-        <a href="#single-url"
-          >Best tech sales of the July Fourth weekend: HP laptops, Apple Watch
-          Series 2, and more</a
-        >
+        <a href="#single-url">Latest Anime</a>
       </h3>
     </div>
   </li>

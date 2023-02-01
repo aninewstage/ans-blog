@@ -40,13 +40,6 @@
                   :created_at="created_at"
                 />
               </div>
-              <nav class="mnmd-pagination text-center">
-                <button class="btn btn-default js-ajax-load-post-trigger">
-                  Load more news<i
-                    class="mdicon mdicon-cached mdicon--last"
-                  ></i>
-                </button>
-              </nav>
             </div>
           </div>
           <!-- .mnmd-block -->

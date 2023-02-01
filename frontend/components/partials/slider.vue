@@ -41,6 +41,7 @@ const query = gql`
         poster
         tags
         body
+        views
         created_at
         updated_at
       }

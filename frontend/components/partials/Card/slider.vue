@@ -13,7 +13,7 @@
       <div class="post__text-wrap">
         <div class="post__text-inner">
           <h3 class="post__title typescale-4">
-            {{ props.post?.body.substring(0, 30) }}
+            {{ removeTags(props.post?.body ?? "Testing").substring(0, 30) }}
           </h3>
           <div class="post__meta">
             <span class="entry-author"
@@ -44,6 +44,7 @@ const props = defineProps({
     required: true,
   },
 });
+console.log(props.post);
 </script>
 
 <style scoped>

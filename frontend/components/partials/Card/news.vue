@@ -16,7 +16,7 @@
           <NuxtLink :to="'/view/' + props?.slug">{{ props?.title }}</NuxtLink>
         </h3>
         <div class="post__excerpt">
-          {{ props?.body?.substring(0, 100) }}
+          {{ removeTags(props?.body).substring(0, 100) }}
         </div>
         <div class="post__meta">
           <span class="entry-author"
