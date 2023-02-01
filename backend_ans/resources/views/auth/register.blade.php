@@ -26,8 +26,8 @@
                             </div>
 
                             <div id="basic-example">
-                                <!-- Seller Details -->
-                                <h3>Seller Details</h3>
+                                <!-- Author Details -->
+                                <h3>Author Details</h3>
                                 <section>
                                     @foreach ($errors->all() as $message)
                                         <p style="color:red;">{{ $message }}</p>
