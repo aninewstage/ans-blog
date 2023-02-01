@@ -55,7 +55,7 @@ export default defineNuxtConfig({
         clients: {
             default: {
                 connectToDevTools: true,
-                httpEndpoint: 'http://localhost:4000/graphql'
+                httpEndpoint: 'https://graphql.aninewstage.org/graphql'
             },
         },
     },

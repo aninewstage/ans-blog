@@ -66,7 +66,7 @@
         >
           <div class="header-logo header-logo--mobile flexbox__item text-left">
             <a href="home-1.html"
-              ><img src="img/logo-mark-color.png" alt="logo"
+              ><img src="https://files.aninewstage.org/file/ans-assets/assets/logo-bottom.png" alt="logo" width="50px" height="50px"
             /></a>
           </div>
         </div>

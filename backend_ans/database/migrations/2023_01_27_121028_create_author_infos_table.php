@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate('NULL');
             $table->string('name');
-            $table->text('bio')->default('Too lazy to write bio');
+            $table->text('bio')->nullable();
             $table->string('avatar');
             $table->string('ph_number');
             $table->string('address');
