@@ -5,19 +5,23 @@
             <div class="navbar-brand-box">
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                        <img src="https://files.aninewstage.org/file/ans-assets/assets/logo.png" alt=""
+                            height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20">
+                        <img src="https://files.aninewstage.org/file/ans-assets/assets/logo.png" alt=""
+                            height="22">
                     </span>
                 </a>
 
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                        <img src="https://files.aninewstage.org/file/ans-assets/assets/logo.png" alt=""
+                            height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="20">
+                        <img src="https://files.aninewstage.org/file/ans-assets/assets/logo.png" alt=""
+                            height="22">
                     </span>
                 </a>
             </div>
@@ -70,42 +74,47 @@
                     <div class="px-lg-2">
                         <div class="row g-0">
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/github.png" alt="Github">
-                                    <span>GitHub</span>
+                                <a class="dropdown-icon-item" href="https://myanimelist.net/">
+                                    <img src="https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
+                                        alt="Myanimelist">
+                                    <span>Myanimelist</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
-                                    <span>Bitbucket</span>
+                                <a class="dropdown-icon-item" href="https://postimages.org/">
+                                    <img src="https://postimgs.org/favicon.ico" alt="bitbucket">
+                                    <span>PostImages</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/dribbble.png" alt="dribbble">
-                                    <span>Dribbble</span>
+                                <a class="dropdown-icon-item" href="https://www.animenewsnetwork.com/">
+                                    <img src="https://pbs.twimg.com/profile_images/199100222/ANN_Logo_dots_400x400.png"
+                                        alt="dribbble">
+                                    <span>Anime News Network</span>
                                 </a>
                             </div>
                         </div>
 
                         <div class="row g-0">
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/dropbox.png" alt="dropbox">
-                                    <span>Dropbox</span>
+                                <a class="dropdown-icon-item" href="https://www.latestanimenews.com/">
+                                    <img src="https://www.latestanimenews.com/wp-content/uploads/2022/12/lan-logo.png"
+                                        alt="dropbox">
+                                    <span>Latest Anime News</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/mail_chimp.png" alt="mail_chimp">
-                                    <span>Mail Chimp</span>
+                                <a class="dropdown-icon-item" href="https://www.crunchyroll.com/news">
+                                    <img src="https://www.crunchyroll.com/favicons/apple-touch-icon.png"
+                                        alt="mail_chimp">
+                                    <span>Crunchyroll</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="assets/images/brands/slack.png" alt="slack">
-                                    <span>Slack</span>
+                                <a class="dropdown-icon-item" href="https://animeuknews.net/">
+                                    <img src="https://animeuknews.net/app/themes/animeuknews/dist/images/animeuknews-twoline_51565b83.svg"
+                                        alt="slack">
+                                    <span>AnimeUKNews</span>
                                 </a>
                             </div>
                         </div>
@@ -192,7 +201,6 @@
                             <div class="dropdown-menu" aria-labelledby="topnav-authors">
 
                                 <a href="{{ route('authors.index') }}" class="dropdown-item">View All</a>
-                                <a href="{{ route('authors.create') }}" class="dropdown-item">Create</a>
                             </div>
                         </li>
 

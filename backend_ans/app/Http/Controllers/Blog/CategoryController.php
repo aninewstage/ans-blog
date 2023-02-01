@@ -57,4 +57,17 @@ class CategoryController extends Controller
         }
         return redirect(route('categories.index'))->with('error', 'Something Wrong!!!');
     }
+
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+
+        if ($category) {
+            $category->delete();
+
+            return redirect(route('categories.index'))->with('success', 'Category Deleted Successfully');
+        }
+
+        return redirect(route('categories.index'))->with('error', 'Something Wrong!!!');
+    }
 }

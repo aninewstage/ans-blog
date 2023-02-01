@@ -73,4 +73,17 @@ class PostController extends Controller
 
         return redirect(route('posts.index'))->with('error', 'Something Wrong!!!');
     }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+
+        if ($post) {
+            $post->delete();
+
+            return redirect(route('posts.index'))->with('success', 'Post Deleted Successfully');
+        }
+
+        return redirect(route('posts.index'))->with('error', 'Something Wrong!!!');
+    }
 }

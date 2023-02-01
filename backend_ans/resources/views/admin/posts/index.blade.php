@@ -54,11 +54,19 @@
                                                 {{ $item->published === 1 ? 'checked' : '' }} disabled>
                                         </td>
                                         <td>{{ $item->created_at->diffForHumans() }}</td>
-                                        <td style="width: 100px">
+                                        <td class="d-flex" style="width: 100px">
                                             <a href="{{ route('posts.edit', $item->id) }}"
                                                 class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
+                                            <form action="{{ route('posts.destroy', $item->id) }}" method="POST"
+                                                class="mx-2">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a class="btn btn-outline-danger btn-sm edit dltBtn" title="Delete">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

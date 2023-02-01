@@ -6,10 +6,10 @@
             <div class="col-lg-12">
                 <div class="text-center">
                     <a href="index.html" class="mb-5 d-block auth-logo">
-                        <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="22"
-                            class="logo logo-dark">
-                        <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="22"
-                            class="logo logo-light">
+                        <img src="https://files.aninewstage.org/file/ans-assets/assets/logo-bottom.png" alt=""
+                            height="100" class="logo logo-dark">
+                        <img src="https://files.aninewstage.org/file/ans-assets/assets/logo-bottom.png" alt=""
+                            height="100" class="logo logo-light">
                     </a>
                 </div>
             </div>
@@ -21,8 +21,8 @@
                         <form action="{{ route('register') }}" method="POST" id="register-form">
                             @csrf
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Welcome Back !</h5>
-                                <p class="text-muted">Sign in to continue to Minible.</p>
+                                <h5 class="text-primary">Welcome !</h5>
+                                <p class="text-muted">Sign up to become a author at ANS Blogs.</p>
                             </div>
 
                             <div id="basic-example">

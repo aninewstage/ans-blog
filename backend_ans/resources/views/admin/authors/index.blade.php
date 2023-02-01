@@ -50,7 +50,7 @@
                                         <td>{{ $item->bio ?? 'Too lazy to write bio' }}</td>
                                         <td>{{ $item->created_at->diffForHumans() }}</td>
                                         <td style="width: 100px">
-                                            <a href="{{ route('posts.edit', $item->id) }}"
+                                            <a href="{{ route('authors.edit', $item->id) }}"
                                                 class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
