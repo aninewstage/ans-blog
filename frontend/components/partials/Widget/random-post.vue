@@ -4,84 +4,23 @@
       <h4 class="widget__title-text">Random posts</h4>
     </div>
     <ol class="posts-list list-space-sm list-unstyled">
-      <li>
+      <li v-for="(post, index) in store.randomPosts" :key="index">
         <article class="post post--overlay post--overlay-bottom cat-1">
           <div
             class="background-img background-img--darkened"
-            style="background-image: url('img/demo/xs-16_9.jpg')"
+            :style="{ backgroundImage: `url(${post?.poster})` }"
           ></div>
           <div class="post__text inverse-text">
             <div class="post__text-inner">
-              <a href="#cat-url" class="post__cat post__cat--bg cat-theme-bg"
-                >Mobile</a
+              <NuxtLink
+                :to="hasParentCategory(post?.category)"
+                class="post__cat post__cat--bg cat-theme-bg"
+                >{{ post?.category?.name }}</NuxtLink
               >
-              <h3 class="post__title typescale-1">
-                Growth funds are dumping Apple stock on anticipated iPhone sales
-                decline
-              </h3>
+              <h3 class="post__title typescale-1">{{ post?.title }}</h3>
             </div>
           </div>
-          <a href="#" class="link-overlay"></a>
-        </article>
-      </li>
-      <li>
-        <article class="post post--overlay post--overlay-bottom cat-1">
-          <div
-            class="background-img background-img--darkened"
-            style="background-image: url('img/demo/xs-16_9.jpg')"
-          ></div>
-          <div class="post__text inverse-text">
-            <div class="post__text-inner">
-              <a href="#cat-url" class="post__cat post__cat--bg cat-theme-bg"
-                >Mobile</a
-              >
-              <h3 class="post__title typescale-1">
-                Growth funds are dumping Apple stock on anticipated iPhone sales
-                decline
-              </h3>
-            </div>
-          </div>
-          <a href="#" class="link-overlay"></a>
-        </article>
-      </li>
-      <li>
-        <article class="post post--overlay post--overlay-bottom cat-1">
-          <div
-            class="background-img background-img--darkened"
-            style="background-image: url('img/demo/xs-16_9.jpg')"
-          ></div>
-          <div class="post__text inverse-text">
-            <div class="post__text-inner">
-              <a href="#cat-url" class="post__cat post__cat--bg cat-theme-bg"
-                >Mobile</a
-              >
-              <h3 class="post__title typescale-1">
-                Growth funds are dumping Apple stock on anticipated iPhone sales
-                decline
-              </h3>
-            </div>
-          </div>
-          <a href="#" class="link-overlay"></a>
-        </article>
-      </li>
-      <li>
-        <article class="post post--overlay post--overlay-bottom cat-1">
-          <div
-            class="background-img background-img--darkened"
-            style="background-image: url('img/demo/xs-16_9.jpg')"
-          ></div>
-          <div class="post__text inverse-text">
-            <div class="post__text-inner">
-              <a href="#cat-url" class="post__cat post__cat--bg cat-theme-bg"
-                >Mobile</a
-              >
-              <h3 class="post__title typescale-1">
-                Growth funds are dumping Apple stock on anticipated iPhone sales
-                decline
-              </h3>
-            </div>
-          </div>
-          <a href="#" class="link-overlay"></a>
+          <NuxtLink :to="'/view/' + post?.slug" class="link-overlay"></NuxtLink>
         </article>
       </li>
     </ol>
@@ -89,6 +28,11 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  category: Object,
+});
+const store = useWidgetStore();
+store.getRandomPosts();
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,6 @@
 <template>
   <div class="site-content">
+    <Title>Aninewstage Blogs</Title>
     <!-- Mosaic block-->
     <div
       class="
@@ -29,4 +30,12 @@
 </template>
 
 <script setup>
+useServerSeoMeta({
+  title: "Aniewnstage Blogs",
+  ogTitle: "Aniewnstage Blogs",
+  description: "First and biggest anime news blogs in myanmar.",
+  ogDescription: "First and biggest anime news blogs in myanmar.",
+  ogImage: "https://files.aninewstage.org/file/ans-assets/assets/logo.png",
+  twitterCard: "summary_large_image",
+});
 </script>

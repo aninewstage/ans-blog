@@ -1,5 +1,6 @@
 <template>
   <div class="site-content">
+    <Title>Author List</Title>
     <div
       class="
         mnmd-block mnmd-block--fullwidth mnmd-block--contiguous
@@ -23,7 +24,13 @@
             <div class="mnmd-block">
               <ul class="list-unstyled list-space-lg">
                 <PartialsCardAuthor
-                  v-for="{ id, username, email, info, created_at } in authors"
+                  v-for="{
+                    id,
+                    username,
+                    email,
+                    info,
+                    created_at,
+                  } in authors.data"
                   :key="id"
                   :id="id"
                   :info="info"
@@ -31,7 +38,10 @@
                   :email="email"
                   :created_at="created_at"
                 />
-                <Pagination v-if="authors.length > 5" />
+                <Pagination
+                  v-if="authors.length > 5"
+                  :pagination="authors?.paginatorInfo"
+                />
               </ul>
             </div>
             <!-- .mnmd-block -->
@@ -176,15 +186,32 @@
   <!-- .site-content -->
 </template>
 <script setup>
+useServerSeoMeta({
+  title: "Authors List",
+  ogTitle: "Authors List",
+  description: "This is the list of author at aninewstage blog",
+  ogDescription: "This is the list of author at aninewstage blog",
+  ogImage: "https://files.aninewstage.org/file/ans-assets/assets/logo.png",
+  twitterCard: "summary_large_image",
+});
 const authors = ref({});
 const query = gql`
   query getUsers {
     users(role: "author") {
+      paginatorInfo {
+        total
+        perPage
+        count
+        currentPage
+        lastItem
+        lastPage
+      }
       data {
         id
         info {
           bio
           facebook
+          telegram
           avatar
           name
           twitter
@@ -197,5 +224,5 @@ const query = gql`
   }
 `;
 const { data } = await useAsyncQuery(query);
-authors.value = data.value?.users?.data;
+authors.value = data.value?.users;
 </script>

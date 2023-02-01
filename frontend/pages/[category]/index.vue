@@ -1,5 +1,6 @@
 <template>
   <div class="site-content">
+    <Title>{{ capitalize(category) }}</Title>
     <div
       class="
         mnmd-block mnmd-block--fullwidth mnmd-block--contiguous
@@ -102,4 +103,14 @@ const { data } = await useAsyncQuery(query);
 posts.value = data.value?.categories?.data[0]?.posts?.data;
 category.value = data.value?.categories?.data[0]?.name;
 pagination.value = data.value?.categories?.data[0]?.posts?.paginatorInfo;
+
+useServerSeoMeta({
+  title: () => `${capitalize(category?.value)}`,
+  ogTitle: () => `${capitalize(category?.value)} - ANS Blogs`,
+  description: () => `List of ${category?.value} from aninewstage blog`,
+  ogDescription: () => `List of ${category?.value} from aninewstage blog`,
+  ogImage: () =>
+    `https://files.aninewstage.org/file/ans-assets/assets/logo.png`,
+  twitterCard: () => "summary_large_image",
+});
 </script>

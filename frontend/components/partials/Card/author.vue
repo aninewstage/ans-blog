@@ -5,7 +5,10 @@
         <div class="author-avatar">
           <img
             alt="Ryan Reynold"
-            :src="`${props.info?.avatar}`"
+            :src="`${
+              props.info?.avatar ??
+              'https://f004.backblazeb2.com/file/ans-assets/assets/avatar.png'
+            }`"
             class="avatar photo"
             height="80"
             width="80"
@@ -34,7 +37,7 @@
             <div class="author-socials col-xs-12 col-sm-6">
               <ul class="list-unstyled list-horizontal list-space-sm">
                 <li>
-                  <a :href="'mailto:' + `${props?.info?.gmail}`"
+                  <a :href="'mailto:' + `${props?.email}`"
                     ><i class="mdicon mdicon-mail_outline"></i
                     ><span class="sr-only">e-mail</span></a
                   >
@@ -52,9 +55,11 @@
                   >
                 </li>
                 <li>
-                  <a :href="`${props?.info?.gmail}`"
-                    ><i class="mdicon mdicon-google-plus"></i
-                    ><span class="sr-only">Google+</span></a
+                  <a
+                    :href="`${props?.info?.telegram}`"
+                    style="vertical-align: middle"
+                    ><i class="fa fa-telegram"></i
+                    ><span class="sr-only">Telegram</span></a
                   >
                 </li>
               </ul>

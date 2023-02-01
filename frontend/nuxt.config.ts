@@ -1,5 +1,15 @@
-import { ClientConfig } from "@nuxtjs/apollo"
 export default defineNuxtConfig({
+    nitro: {
+        prerender: {
+            crawlLinks: true,
+            routes: [
+                '/',
+            ]
+        }
+    },
+    imports: {
+        dirs: ['./stores'],
+    },
     app: {
         head: {
             bodyAttrs: {
@@ -10,7 +20,7 @@ export default defineNuxtConfig({
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.png' },
+                { rel: 'icon', type: 'image/x-icon', href: 'https://aninewstage.org/images/favicon/favicon.ico' },
                 // <link rel="stylesheet" href="https://myawesome-lib.css">
                 { rel: 'stylesheet', href: '/css/vendors.css' },
                 { rel: 'stylesheet', href: '/css/style.css' },
@@ -31,7 +41,15 @@ export default defineNuxtConfig({
             ]
         }
     },
-    modules: ['@nuxtjs/apollo'],
+    modules: ['@nuxtjs/apollo', '@pinia/nuxt', 'nuxt-simple-sitemap'],
+
+    pinia: {
+        autoImports: ['defineStore', 'acceptHMRUpdate'],
+    },
+
+    sitemap: {
+        hostname: 'https://blogs.aninewstage.org',
+    },
     apollo: {
         autoImports: true,
         clients: {

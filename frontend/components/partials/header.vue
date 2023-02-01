@@ -7,23 +7,35 @@
           <div class="col-xs-3 inverse-text">
             <ul class="social-list social-list--lg list-horizontal">
               <li>
-                <a href="#"><i class="mdicon mdicon-facebook"></i></a>
+                <a href="https://www.facebook.com/aninewstage"
+                  ><i class="mdicon mdicon-facebook"></i
+                ></a>
               </li>
               <li>
-                <a href="#"><i class="mdicon mdicon-twitter"></i></a>
+                <a href="https://twitter.com/j6dr23n"
+                  ><i class="mdicon mdicon-twitter"></i
+                ></a>
               </li>
               <li>
-                <a href="#"><i class="mdicon mdicon-youtube"></i></a>
+                <a href="mailto:j6dr23n@gmail.com"
+                  ><i class="mdicon mdicon-mail_outline"></i
+                ></a>
               </li>
               <li>
-                <a href="#"><i class="mdicon mdicon-google-plus"></i></a>
+                <a href="https://t.me/aninewstage"
+                  ><i class="fa fa-telegram" style="vertical-align: middle"></i
+                ></a>
               </li>
             </ul>
           </div>
           <div class="col-xs-6">
             <div class="header-logo text-center">
-              <a href="home-1.html"
-                ><img src="img/logo-white.png" alt="logo" width="200"
+              <a href="/"
+                ><img
+                  src="https://files.aninewstage.org/file/ans-assets/assets/logo-bottom.png"
+                  alt="logo"
+                  width="70px"
+                  height="70px"
               /></a>
             </div>
           </div>
@@ -134,13 +146,6 @@
             </ul>
           </div>
           <div class="navigation-bar__section">
-            <a
-              href="#login-modal"
-              class="navigation-bar__login-btn navigation-bar-btn"
-              data-toggle="modal"
-              data-target="#login-modal"
-              ><i class="mdicon mdicon-person"></i
-            ></a>
             <button
               type="submit"
               class="navigation-bar-btn js-search-dropdown-toggle"

@@ -1,5 +1,6 @@
 <template>
   <div class="site-content single-entry">
+    <Title>{{ post?.title }}</Title>
     <div class="mnmd-block mnmd-block--fullwidth single-entry-wrap">
       <div class="container">
         <div class="row">
@@ -79,17 +80,20 @@
                     <span class="entry-author entry-author--with-ava"
                       ><img
                         alt="Ryan Reynold"
-                        :src="post.author.info.avatar"
+                        :src="
+                          post.author?.info?.avatar ??
+                          'https://f004.backblazeb2.com/file/ans-assets/assets/avatar.png'
+                        "
                         class="entry-author__avatar"
                         height="34"
                         width="34"
                       />By
                       <NuxtLink
-                        :to="'/author/' + `${props?.username}`"
+                        :to="'/author/' + `${post.author?.username}`"
                         class="entry-author__name"
                         title="Posts by Ryan Reynold"
                         rel="author"
-                        >{{ post.author.username }}</NuxtLink
+                        >{{ post.author?.username }}</NuxtLink
                       > </span
                     ><time
                       class="entry-date published"
@@ -111,6 +115,17 @@
                     >
                   </div>
                 </header>
+                <div
+                  class="entry-thumb single-entry-thumb"
+                  bis_skin_checked="1"
+                >
+                  <img
+                    width="800"
+                    height="400"
+                    :src="`${post?.poster}`"
+                    sizes="(max-width: 800px) 100vw, 800px"
+                  />
+                </div>
                 <div v-html="post?.body"></div>
                 <footer class="single-footer entry-footer">
                   <div class="entry-info">
@@ -121,23 +136,28 @@
                             <i class="mdicon mdicon-folder"></i
                             ><span class="sr-only">Posted in</span>
                           </li>
-                          <!--
-					-->
                           <li>
-                            <a href="#" class="entry-cat cat-theme cat-2"
-                              >Tech</a
+                            <NuxtLink
+                              :to="`/${post.category?.parent_category?.name}`"
+                              class="entry-cat cat-theme cat-2"
+                              >{{
+                                post?.category?.parent_category?.name
+                              }}</NuxtLink
                             >
                           </li>
-                          <!--
-					-->
                           <li>
-                            <a href="#" class="entry-cat cat-theme cat-3"
-                              >Smartphone</a
+                            <NuxtLink
+                              :to="hasParentCategory(post?.category)"
+                              class="entry-cat cat-theme cat-3"
+                              >{{ post?.category?.name }}</NuxtLink
                             >
                           </li>
                         </ul>
                       </div>
-                      <div class="entry-tags col-sm-6">
+                      <div
+                        class="entry-tags col-sm-6"
+                        v-if="tags !== undefined"
+                      >
                         <ul>
                           <li class="entry-tags__icon">
                             <i class="mdicon mdicon-local_offer"></i
@@ -235,6 +255,7 @@
             </article>
             <!-- .post--single -->
             <PartialsCardAuthor
+              v-if="post?.author?.info !== null"
               :id="post?.author?.id"
               :info="post?.author?.info"
               :username="post?.author?.username"
@@ -242,14 +263,11 @@
               :created_at="post?.author?.created_at"
             />
             <!-- Posts navigation -->
-            <PartialsWidgetNavigationPost />
-            <!-- Posts navigation --><!-- Related posts -->
-            <PartialsWidgetRelatedPost />
-            <!-- Related posts --><!-- Comments section -->
+            <PartialsWidgetNavigationPost :category="post?.category" />
+            <!-- Posts navigation -->
+            <!-- Comments section -->
             <PartialsWidgetComments />
-            <!-- Comments section --><!-- Same category posts -->
-            <PartialsWidgetSameCategoryPost />
-            <!-- Same category posts -->
+            <!-- Comments section -->
           </div>
           <!-- .mnmd-main-col -->
           <div
@@ -260,8 +278,6 @@
 
             <PartialsWidgetRandomPost />
             <!-- Widget Indexed posts C -->
-            <PartialsWidgetPopularView />
-            <!-- Widget Indexed posts C --><!-- Widget posts list -->
           </div>
           <!-- .mnmd-sub-col -->
         </div>
@@ -276,10 +292,11 @@
 
 <script setup>
 import moment from "moment";
+import { useWidgetStore } from "~~/stores/widget";
+const store = useWidgetStore();
 const post = ref({});
 const route = useRoute();
 const tags = ref();
-console.log(tags);
 const query = gql`
   query getPosts {
     postResolver(slug: "${route.params?.slug}") {
@@ -301,6 +318,11 @@ const query = gql`
         }
       }
       category {
+        parent_category{
+          id
+          name
+          slug
+        }
         id
         name
         sub_categories(first: 10) {
@@ -318,5 +340,16 @@ const query = gql`
 `;
 const { data } = await useAsyncQuery(query);
 post.value = data.value?.postResolver;
-tags.value = post.value.tags.split(",");
+tags.value = post.value?.tags?.split(",");
+
+store.getRandomPosts();
+
+useServerSeoMeta({
+  title: () => `${capitalize(post?.value?.title)}`,
+  ogTitle: () => `${capitalize(post?.value?.title)} - ANS Blogs`,
+  description: () => `${capitalize(post?.value?.body)}`,
+  ogDescription: () => `${capitalize(post?.value?.body)}`,
+  ogImage: () => `${post?.value?.poster}`,
+  twitterCard: () => "summary_large_image",
+});
 </script>

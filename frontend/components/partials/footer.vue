@@ -16,16 +16,14 @@
             id="menu-footer-menu"
             class="navigation navigation--footer navigation--center"
           >
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="#">Buy theme</a></li>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="theme-introduction.html">All features</a></li>
+            <li><NuxtLink to="/contact">Contact</NuxtLink></li>
             <li>
-              <a
-                href="https://themeforest.net/user/minimaldog/portfolio?ref=minimaldog"
-                >Other themes</a
-              >
+              <NuxtLink to="/privacy">Privacy</NuxtLink>
             </li>
+            <li><NuxtLink to="/cookie">Cookie</NuxtLink></li>
+            <li><NuxtLink to="/terms">Terms</NuxtLink></li>
+            <li><a href="">FAQ</a></li>
+            <li><a href="">Sitemap</a></li>
           </ul>
         </nav>
       </div>
@@ -34,16 +32,24 @@
       <div class="container">
         <ul class="social-list social-list--lg list-center">
           <li>
-            <a href="#"><i class="mdicon mdicon-facebook"></i></a>
+            <a href="https://www.facebook.com/aninewstage"
+              ><i class="mdicon mdicon-facebook"></i
+            ></a>
           </li>
           <li>
-            <a href="#"><i class="mdicon mdicon-twitter"></i></a>
+            <a href="https://twitter.com/j6dr23n"
+              ><i class="mdicon mdicon-twitter"></i
+            ></a>
           </li>
           <li>
-            <a href="#"><i class="mdicon mdicon-youtube"></i></a>
+            <a href="mailto:j6dr23n@gmail.com"
+              ><i class="mdicon mdicon-mail_outline"></i
+            ></a>
           </li>
           <li>
-            <a href="#"><i class="mdicon mdicon-google-plus"></i></a>
+            <a href="https://t.me/aninewstage"
+              ><i class="fa fa-telegram" style="vertical-align: middle"></i
+            ></a>
           </li>
         </ul>
       </div>
@@ -51,12 +57,15 @@
     <div class="site-footer__section">
       <div class="container">
         <div class="text-center">
-          The Next Mag &copy; 2017. Made with &#9749; by
-          <a
-            href="https://themeforest.net/user/minimaldog/portfolio?ref=minimaldog"
-            target="_blank"
-            >minimaldog Themes</a
-          >
+          Aninewstage Blogs is the property of
+          <a href="https://aninewstage.org" target="_blank">Aninewstage</a>
+          ©2023 All Rights Reserved.
+        </div>
+        <div class="text-center">
+          <p style="font-size: 10px" class="mt-4">
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </p>
         </div>
       </div>
     </div>

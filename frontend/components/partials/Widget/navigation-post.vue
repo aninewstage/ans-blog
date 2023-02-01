@@ -1,28 +1,36 @@
 <template>
-  <div class="posts-navigation single-entry-section clearfix">
+  <div
+    class="posts-navigation single-entry-section clearfix"
+    v-if="store.relatedPosts.length > 2"
+  >
     <div class="posts-navigation__prev">
       <article
         class="post--overlay post--overlay-bottom post--overlay-floorfade"
       >
         <div
           class="background-img"
-          style="background-image: url('img/demo/life-3-16_9.jpg')"
+          :style="{ backgroundImage: `url(${store.relatedPosts[0]?.poster})` }"
         ></div>
         <div class="post__text inverse-text">
           <div class="post__text-wrap">
             <div class="post__text-inner">
               <h3 class="post__title typescale-1">
-                Forces of Nature gather in a new fashion exhibition at FIT
+                {{ store.relatedPosts[0]?.title }}
               </h3>
             </div>
           </div>
         </div>
-        <a href="#single-url" class="link-overlay"></a>
+        <NuxtLink
+          :to="'/view/' + store.relatedPosts[0]?.slug"
+          class="link-overlay"
+        ></NuxtLink>
       </article>
-      <a class="posts-navigation__label" href="#single-url"
+      <NuxtLink
+        :to="'/view/' + store.relatedPosts[0]?.slug"
+        class="posts-navigation__label"
         ><span
           ><i class="mdicon mdicon-arrow_back"></i>Previous article</span
-        ></a
+        ></NuxtLink
       >
     </div>
     <div class="posts-navigation__next">
@@ -31,58 +39,37 @@
       >
         <div
           class="background-img"
-          style="background-image: url('img/demo/life-2-16_9.jpg')"
+          :style="{ backgroundImage: `url(${store.relatedPosts[1]?.poster})` }"
         ></div>
         <div class="post__text inverse-text">
           <div class="post__text-wrap">
             <div class="post__text-inner">
               <h3 class="post__title typescale-1">
-                Five bands to see at Pitchfork Music Festival 2017
+                {{ store.relatedPosts[1]?.title }}
               </h3>
             </div>
           </div>
         </div>
-        <a href="#single-url" class="link-overlay"></a>
+        <NuxtLink
+          :to="'/view/' + store.relatedPosts[1]?.slug"
+          class="link-overlay"
+        ></NuxtLink>
       </article>
-      <a class="posts-navigation__label" href="#single-url"
+      <NuxtLink
+        :to="'/view/' + store.relatedPosts[1]?.slug"
+        class="posts-navigation__label"
         ><span>Next article<i class="mdicon mdicon-arrow_forward"></i></span
-      ></a>
+      ></NuxtLink>
     </div>
   </div>
 </template>
 
 <script setup>
-const posts = ref({});
-const query = gql`
-  query getPosts {
-    posts(category_id: 1) {
-      data {
-        id
-        author {
-          id
-          username
-        }
-        title
-        slug
-        category {
-          name
-          slug
-          parent_category {
-            name
-            slug
-          }
-        }
-        poster
-        tags
-        body
-        created_at
-        updated_at
-      }
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-posts.value = data.value?.posts.data;
+const props = defineProps({
+  category: Object,
+});
+const store = useWidgetStore();
+store.getRelatedPosts(props?.category?.id);
 </script>
 
 <style lang="scss" scoped>

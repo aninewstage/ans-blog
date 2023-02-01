@@ -1,5 +1,6 @@
 <template>
   <div class="site-content">
+    <Title>{{ capitalize(route.params?.category + " " + category) }}</Title>
     <div
       class="
         mnmd-block mnmd-block--fullwidth mnmd-block--contiguous
@@ -102,5 +103,21 @@ const { data } = await useAsyncQuery(query);
 posts.value = data.value?.categories?.data[0]?.posts;
 category.value = data.value?.categories?.data[0]?.name;
 pagination.value = data.value?.categories?.data[0]?.posts?.paginatorInfo;
-console.log(pagination);
+
+useServerSeoMeta({
+  title: () => `${capitalize(route.params?.category + " " + category?.value)}`,
+  ogTitle: () =>
+    `${capitalize(route.params?.category + " " + category?.value)} - ANS Blogs`,
+  description: () =>
+    `List of ${
+      route.params?.category + " " + category?.value
+    } from aninewstage blog`,
+  ogDescription: () =>
+    `List of ${
+      route.params?.category + " " + category?.value
+    } from aninewstage blog`,
+  ogImage: () =>
+    `https://files.aninewstage.org/file/ans-assets/assets/logo.png`,
+  twitterCard: () => "summary_large_image",
+});
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="site-content">
+    <Title>Contact</Title>
     <div
       class="
         mnmd-block mnmd-block--fullwidth mnmd-block--contiguous

@@ -1,5 +1,6 @@
 <template>
   <div class="site-content">
+    <Title>{{ author?.username }}</Title>
     <div class="mnmd-block mnmd-block--fullwidth">
       <div class="container">
         <div class="row">
@@ -24,7 +25,7 @@
                     body,
                     tags,
                     created_at,
-                  } in author?.posts"
+                  } in author?.posts.data"
                   :key="id"
                   :id="id"
                   :author="author"
@@ -37,7 +38,10 @@
                   :created_at="created_at"
                 />
               </div>
-              <Pagination />
+              <Pagination
+                v-if="user?.posts.length > 10"
+                :pagination="user?.posts?.paginatorInfo"
+              />
             </div>
             <!-- .mnmd-block -->
           </div>
@@ -187,25 +191,36 @@ const route = useRoute();
 const query = gql`
   query getUser {
     user(username: "${route.params?.username}") {
-      id
       info {
         bio
         facebook
         avatar
         name
+        telegram
         twitter
       }
-      posts {
-        id
-        title
-        slug
-        category {
-          name
+      posts(first: 10) {
+        paginatorInfo {
+          count
+          total
+          lastItem
+          lastPage
+          perPage
+          hasMorePages
+          firstItem
         }
-        poster
-        tags
-        body
-        created_at
+        data {
+          id
+          title
+          slug
+          category {
+            name
+          }
+          poster
+          tags
+          body
+          created_at
+        }
       }
       username
       email
@@ -215,4 +230,13 @@ const query = gql`
 `;
 const { data } = await useAsyncQuery(query);
 author.value = data.value?.user;
+
+useServerSeoMeta({
+  title: () => `${author?.username}`,
+  ogTitle: () => `${author?.username} - ANS Blogs`,
+  description: () => `${author?.username} from aninewstage blog`,
+  ogDescription: () => `${author?.username} from aninewstage blog`,
+  ogImage: () => `${author?.info?.avatar}`,
+  twitterCard: () => "summary_large_image",
+});
 </script>
