@@ -1,7 +1,7 @@
 <template>
   <div class="comments-section single-entry-section">
     <div id="comments" class="comments-area">
-      <h2 class="comments-title">5 Comments</h2>
+      <h2 class="comments-title">Comments Area</h2>
     </div>
     <div id="disqus_thread"></div>
     <!-- #comments -->

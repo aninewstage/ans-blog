@@ -19,7 +19,6 @@ return new class () extends Migration {
             $table->text('bio')->nullable();
             $table->string('avatar');
             $table->string('ph_number');
-            $table->string('address');
             $table->float('rating')->nullable();
             $table->string('facebook');
             $table->string('telegram');

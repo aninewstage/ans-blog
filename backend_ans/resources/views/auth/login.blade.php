@@ -24,6 +24,9 @@
                             <p class="text-muted">Sign in to continue to Aninewstage Blogs.</p>
                         </div>
                         <div class="p-2 mt-4">
+                            @foreach ($errors->all() as $message)
+                                <p style="color:red;">{{ $message }}</p>
+                            @endforeach
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
 

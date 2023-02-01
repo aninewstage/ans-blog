@@ -53,7 +53,6 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
-            DB::commit();
             $info = Info::create([
                 'name' => $request->name,
                 'bio' => $request->bio,
@@ -68,6 +67,7 @@ class RegisteredUserController extends Controller
             // all good
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e->getMessage());
         }
 
         event(new Registered($user));
