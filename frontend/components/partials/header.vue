@@ -199,6 +199,21 @@
 </template>
 
 <script setup>
+onMounted(() => {
+  var i = $;
+  var n = i("#header-search-dropdown")
+  n.on("click", function (i) { i.stopPropagation() }), i(".js-search-dropdown-toggle").on("click", function (e) {
+      e.stopPropagation()
+      var t = i(this), o = ""
+      switch (o = t.hasClass("mobile-header-btn") ? "mobile" : t.parents(".sticky-header").length ? "sticky" : "navbar", (n.hasClass("is-in-" + o) || !n.hasClass("is-active")) && n.toggleClass("is-active"), o) {
+          case "mobile": n.hasClass("is-in-mobile") || (n.addClass("is-in-mobile"), n.removeClass("is-in-sticky"), n.removeClass("is-in-navbar"), n.appendTo("#mnmd-mobile-header"))
+              break
+          case "sticky": n.hasClass("is-in-sticky") || (n.addClass("is-in-sticky"), n.removeClass("is-in-mobile"), n.removeClass("is-in-navbar"), n.insertAfter(i("#mnmd-sticky-header").find(".navigation-bar__inner")))
+              break
+          default: n.hasClass("is-in-navbar") || (n.addClass("is-in-navbar"), n.removeClass("is-in-sticky"), n.removeClass("is-in-mobile"), n.insertAfter(t.parents(".navigation-bar__inner")))
+      }n.hasClass("is-active") && setTimeout(function () { n.find(".search-form__input").focus() }, 200)
+  }), i(document).on("click", function () { n.removeClass("is-active") }), i(window).on("stickyHeaderHidden", function () { n.hasClass("is-in-sticky") && n.removeClass("is-active") })
+})
 function hasMenuItem(category) {
   if (!category.sub_categories.data) {
     return false;

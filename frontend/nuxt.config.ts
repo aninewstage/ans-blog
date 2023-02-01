@@ -18,6 +18,7 @@ export default defineNuxtConfig({
             meta: [
                 // <meta name="viewport" content="width=device-width, initial-scale=1">
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+                { "http-equiv": 'Content-Security-Policy', content: 'upgrade-insecure-requests' }
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: 'https://aninewstage.org/images/favicon/favicon.ico' },
@@ -29,7 +30,7 @@ export default defineNuxtConfig({
                 // <script src="https://myawesome-lib.js"></script>
                 { src: 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', async: true },
                 { src: 'https://kit.fontawesome.com/2f51628552.js', crossorigin: "anonymous" },
-                { src: '/js/jquery.js', body: true },
+                { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js', body: true },
                 { src: '/js/vendors.js', body: true },
                 { src: '/js/scripts.js', body: true },
 
