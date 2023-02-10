@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 export default defineNuxtConfig({
     nitro: {
         prerender: {
@@ -30,7 +31,11 @@ export default defineNuxtConfig({
                 // <script src="https://myawesome-lib.js"></script>
                 { src: 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', async: true },
                 { src: 'https://kit.fontawesome.com/2f51628552.js', crossorigin: "anonymous" },
+<<<<<<< HEAD
                 { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js', body: true },
+=======
+                { src: '/js/jquery.js', body: true, type: "text/javascript" },
+>>>>>>> fe565bd (cache)
                 { src: '/js/vendors.js', body: true },
                 { src: '/js/scripts.js', body: true },
 
@@ -54,10 +59,7 @@ export default defineNuxtConfig({
     apollo: {
         autoImports: true,
         clients: {
-            default: {
-                connectToDevTools: true,
-                httpEndpoint: 'https://graphql.aninewstage.org/graphql'
-            },
+            default: './apollo/default.ts'
         },
     },
 })
