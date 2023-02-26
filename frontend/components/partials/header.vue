@@ -58,15 +58,15 @@
     >
       <div class="mobile-header__inner mobile-header__inner--flex">
         <div
-          class="
-            header-branding header-branding--mobile
-            mobile-header__section
-            text-left
-          "
+          class="header-branding header-branding--mobile mobile-header__section text-left"
         >
           <div class="header-logo header-logo--mobile flexbox__item text-left">
             <a href="/"
-              ><img src="https://files.aninewstage.org/file/ans-assets/assets/logo-bottom.png" alt="logo" width="50px" height="50px"
+              ><img
+                src="https://files.aninewstage.org/file/ans-assets/assets/logo-bottom.png"
+                alt="logo"
+                width="50px"
+                height="50px"
             /></a>
           </div>
         </div>
@@ -81,11 +81,7 @@
           </button>
           <a
             href="#mnmd-offcanvas-primary"
-            class="
-              offcanvas-menu-toggle
-              mobile-header-btn
-              js-mnmd-offcanvas-toggle
-            "
+            class="offcanvas-menu-toggle mobile-header-btn js-mnmd-offcanvas-toggle"
             ><span class="hidden-xs">Menu</span
             ><i class="mdicon mdicon-menu mdicon--last hidden-xs"></i
             ><i class="mdicon mdicon-menu visible-xs-inline-block"></i
@@ -95,22 +91,14 @@
     </div>
     <!-- Mobile header --><!-- Navigation bar -->
     <nav
-      class="
-        navigation-bar navigation-bar--inverse navigation-bar--fullwidth
-        hidden-xs hidden-sm
-        js-sticky-header-holder
-      "
+      class="navigation-bar navigation-bar--inverse navigation-bar--fullwidth hidden-xs hidden-sm js-sticky-header-holder"
     >
       <div class="container">
         <div class="navigation-bar__inner">
           <div class="navigation-bar__section">
             <a
               href="#mnmd-offcanvas-primary"
-              class="
-                offcanvas-menu-toggle
-                navigation-bar-btn
-                js-mnmd-offcanvas-toggle
-              "
+              class="offcanvas-menu-toggle navigation-bar-btn js-mnmd-offcanvas-toggle"
               ><i class="mdicon mdicon-menu"></i
             ></a>
           </div>
@@ -122,6 +110,7 @@
               class="navigation navigation--main navigation--inline"
             >
               <li><NuxtLink to="/">Home</NuxtLink></li>
+              <li><NuxtLink to="/blogs">Blogs</NuxtLink></li>
               <li
                 :class="hasMenuItem(category)"
                 v-for="category in categories"
@@ -201,19 +190,59 @@
 <script setup>
 onMounted(() => {
   var i = $;
-  var n = i("#header-search-dropdown")
-  n.on("click", function (i) { i.stopPropagation() }), i(".js-search-dropdown-toggle").on("click", function (e) {
-      e.stopPropagation()
-      var t = i(this), o = ""
-      switch (o = t.hasClass("mobile-header-btn") ? "mobile" : t.parents(".sticky-header").length ? "sticky" : "navbar", (n.hasClass("is-in-" + o) || !n.hasClass("is-active")) && n.toggleClass("is-active"), o) {
-          case "mobile": n.hasClass("is-in-mobile") || (n.addClass("is-in-mobile"), n.removeClass("is-in-sticky"), n.removeClass("is-in-navbar"), n.appendTo("#mnmd-mobile-header"))
-              break
-          case "sticky": n.hasClass("is-in-sticky") || (n.addClass("is-in-sticky"), n.removeClass("is-in-mobile"), n.removeClass("is-in-navbar"), n.insertAfter(i("#mnmd-sticky-header").find(".navigation-bar__inner")))
-              break
-          default: n.hasClass("is-in-navbar") || (n.addClass("is-in-navbar"), n.removeClass("is-in-sticky"), n.removeClass("is-in-mobile"), n.insertAfter(t.parents(".navigation-bar__inner")))
-      }n.hasClass("is-active") && setTimeout(function () { n.find(".search-form__input").focus() }, 200)
-  }), i(document).on("click", function () { n.removeClass("is-active") }), i(window).on("stickyHeaderHidden", function () { n.hasClass("is-in-sticky") && n.removeClass("is-active") })
-})
+  var n = i("#header-search-dropdown");
+  n.on("click", function (i) {
+    i.stopPropagation();
+  }),
+    i(".js-search-dropdown-toggle").on("click", function (e) {
+      e.stopPropagation();
+      var t = i(this),
+        o = "";
+      switch (
+        ((o = t.hasClass("mobile-header-btn")
+          ? "mobile"
+          : t.parents(".sticky-header").length
+          ? "sticky"
+          : "navbar"),
+        (n.hasClass("is-in-" + o) || !n.hasClass("is-active")) &&
+          n.toggleClass("is-active"),
+        o)
+      ) {
+        case "mobile":
+          n.hasClass("is-in-mobile") ||
+            (n.addClass("is-in-mobile"),
+            n.removeClass("is-in-sticky"),
+            n.removeClass("is-in-navbar"),
+            n.appendTo("#mnmd-mobile-header"));
+          break;
+        case "sticky":
+          n.hasClass("is-in-sticky") ||
+            (n.addClass("is-in-sticky"),
+            n.removeClass("is-in-mobile"),
+            n.removeClass("is-in-navbar"),
+            n.insertAfter(
+              i("#mnmd-sticky-header").find(".navigation-bar__inner")
+            ));
+          break;
+        default:
+          n.hasClass("is-in-navbar") ||
+            (n.addClass("is-in-navbar"),
+            n.removeClass("is-in-sticky"),
+            n.removeClass("is-in-mobile"),
+            n.insertAfter(t.parents(".navigation-bar__inner")));
+      }
+      n.hasClass("is-active") &&
+        setTimeout(function () {
+          n.find(".search-form__input").focus();
+        }, 200);
+    }),
+    i(document).on("click", function () {
+      n.removeClass("is-active");
+    }),
+    i(window).on("stickyHeaderHidden", function () {
+      n.hasClass("is-in-sticky") && n.removeClass("is-active");
+    });
+});
 function hasMenuItem(category) {
   if (!category.sub_categories.data) {
     return false;
@@ -223,25 +252,31 @@ function hasMenuItem(category) {
     : "";
 }
 const categories = ref({});
-const getCategories = gql`
-  query getCategories {
-    categories(parent_id: 0) {
-      data {
-        sub_categories(first: 10) {
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+      query getCategories {
+        categories(parent_id: 0) {
           data {
-            parent_id
+            sub_categories(first: 10) {
+              data {
+                parent_id
+                name
+                slug
+                id
+              }
+            }
             name
             slug
-            id
           }
         }
-        name
-        slug
-      }
-    }
-  }
-`;
-const { data } = await useAsyncQuery(getCategories);
-console.log(data.value?.categories.data, "from header");
-categories.value = data.value?.categories.data;
+      }`,
+    }),
+  });
+  categories.value = data?.categories.data;
+  console.log(data, "from header");
+} catch (err) {
+  console.log(err);
+}
 </script>

@@ -8,7 +8,6 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxtjs/apollo": "^5.0.0-alpha.5",
     "@nuxtjs/web-vitals": "^0.2.2",
     "@types/js-cookie": "^3.0.2",
     "@types/node": "^18.11.18",

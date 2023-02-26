@@ -1,61 +1,73 @@
 export const useWidgetStore = defineStore('widget', () => {
-    const randomPosts = ref({});
-    const relatedPosts = ref({});
-    async function getRandomPosts() {
-        const query = gql`
-            query getRandomPosts {
-                posts(random: true, first: 4) {
-                    data {
-                        category {
-                            id
-                            name
-                            slug
-                        }
+  const randomPosts = ref({});
+  const relatedPosts = ref({});
+  async function getRandomPosts() {
+    try {
+      const { data } = await useNuxtApp().$apiFetch("/graphql", {
+        body: JSON.stringify({
+          query: `
+          query getRandomPosts {
+            posts(random: true, first: 4) {
+                data {
+                    category {
                         id
-                        title
+                        name
                         slug
-                        poster
-                        created_at
                     }
+                    id
+                    title
+                    slug
+                    poster
+                    created_at
                 }
             }
-        `;
-        const { data } = await useAsyncQuery(query);
-        randomPosts.value = data.value?.posts.data;
+          }`,
+        }),
+      });
+      randomPosts.value = data?.posts.data;
+    } catch (err) {
+      console.log(err);
     }
-    async function getRelatedPosts(category_id) {
-        const query = gql`
-        query getRelatedPosts {
-          posts(category_id: ${category_id}) {
-            data {
-              id
-              author {
+  }
+  async function getRelatedPosts(category_id) {
+    try {
+      const { data } = await useNuxtApp().$apiFetch("/graphql", {
+        body: JSON.stringify({
+          query: `
+          query getRelatedPosts {
+            posts(category_id: ${category_id}) {
+              data {
                 id
-                username
-              }
-              title
-              slug
-              category {
-                name
+                author {
+                  id
+                  username
+                }
+                title
                 slug
-                parent_category {
+                category {
                   name
                   slug
+                  parent_category {
+                    name
+                    slug
+                  }
                 }
+                poster
+                tags
+                body
+                views
+                created_at
+                updated_at
               }
-              poster
-              tags
-              body
-              views
-              created_at
-              updated_at
             }
-          }
-        }
-      `;
-        const { data } = await useAsyncQuery(query);
-        relatedPosts.value = data.value?.posts.data;
+          }`,
+        }),
+      });
+      relatedPosts.value = data?.posts.data;
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    return { getRelatedPosts, getRandomPosts, relatedPosts, randomPosts }
+  return { getRelatedPosts, getRandomPosts, relatedPosts, randomPosts }
 })

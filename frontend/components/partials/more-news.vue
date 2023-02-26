@@ -65,40 +65,46 @@
 
 <script setup>
 const posts = ref({});
-const query = gql`
-  query getPosts {
-    posts(
-      orderBy: [{ column: CREATED_AT, order: DESC }]
-      first: 4
-      random: true
-    ) {
-      data {
-        id
-        author {
-          id
-          username
-        }
-        title
-        slug
-        category {
-          name
-          slug
-          parent_category {
-            name
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+      query getMoreNewsPosts {
+        posts(
+          orderBy: [{ column: CREATED_AT, order: DESC }]
+          first: 4
+          random: true
+        ) {
+          data {
+            id
+            author {
+              id
+              username
+            }
+            title
             slug
+            category {
+              name
+              slug
+              parent_category {
+                name
+                slug
+              }
+            }
+            poster
+            tags
+            body
+            created_at
+            updated_at
           }
         }
-        poster
-        tags
-        body
-        created_at
-        updated_at
-      }
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-posts.value = data.value?.posts.data;
+      }`,
+    }),
+  });
+  posts.value = data?.posts.data;
+} catch (err) {
+  console.log(err);
+}
 </script>
 
 <style lang="scss" scoped>

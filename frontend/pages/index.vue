@@ -3,11 +3,7 @@
     <Title>Aninewstage Blogs</Title>
     <!-- Mosaic block-->
     <div
-      class="
-        mnmd-block mnmd-block--fullwidth mnmd-block--contiguous
-        mnmd-mosaic mnmd-mosaic--gutter-10
-        has-overlap-background
-      "
+      class="mnmd-block mnmd-block--fullwidth mnmd-block--contiguous mnmd-mosaic mnmd-mosaic--gutter-10 has-overlap-background"
     >
       <div class="overlap-background"></div>
 

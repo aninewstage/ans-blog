@@ -72,10 +72,7 @@
               </form>
             </div>
             <div
-              class="
-                mnmd-widget
-                widget widget-subscribe widget-subscribe--stack-bottom
-              "
+              class="mnmd-widget widget widget-subscribe widget-subscribe--stack-bottom"
             >
               <div class="widget-subscribe__inner">
                 <div class="subscribe-form subscribe-form--center">
@@ -188,48 +185,54 @@
 <script setup>
 const author = ref({});
 const route = useRoute();
-const query = gql`
-  query getUser {
-    user(username: "${route.params?.username}") {
-      info {
-        bio
-        facebook
-        avatar
-        name
-        telegram
-        twitter
-      }
-      posts(first: 10) {
-        paginatorInfo {
-          count
-          total
-          lastItem
-          lastPage
-          perPage
-          hasMorePages
-          firstItem
-        }
-        data {
-          id
-          title
-          slug
-          category {
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+      query getUser {
+        user(username: "${route.params?.username}") {
+          info {
+            bio
+            facebook
+            avatar
             name
+            telegram
+            twitter
           }
-          poster
-          tags
-          body
+          posts(first: 10) {
+            paginatorInfo {
+              count
+              total
+              lastItem
+              lastPage
+              perPage
+              hasMorePages
+              firstItem
+            }
+            data {
+              id
+              title
+              slug
+              category {
+                name
+              }
+              poster
+              tags
+              body
+              created_at
+            }
+          }
+          username
+          email
           created_at
         }
-      }
-      username
-      email
-      created_at
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-author.value = data.value?.user;
+      }`,
+    }),
+  });
+  author.value = data?.user;
+} catch (err) {
+  console.log(err);
+}
 
 useServerSeoMeta({
   title: () => `${author?.username}`,

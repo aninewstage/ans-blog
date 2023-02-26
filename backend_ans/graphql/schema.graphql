@@ -27,6 +27,9 @@ type Query {
     postResolver(slug: String @where(operator: "like")): Post
         @field(resolver: "App\\GraphQL\\Queries\\PostResolver")
 
+    postsResolver(search: String!): [Post!]!
+        @paginate(builder: "App\\GraphQL\\Queries\\PostsResolver")
+
     posts(
         orderBy: _ @orderBy(columns: ["created_at", "updated_at"])
         category_id: ID @where(operator: "like")
