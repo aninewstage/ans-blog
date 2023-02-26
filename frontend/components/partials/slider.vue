@@ -19,38 +19,44 @@
 
 <script setup>
 const posts = ref({});
-const query = gql`
-  query getPosts {
-    posts(first: 4) {
-      data {
-        id
-        author {
-          id
-          username
-        }
-        title
-        slug
-        category {
-          name
-          slug
-          parent_category {
-            name
-            slug
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+        query getSliderPosts {
+          posts(first: 4) {
+            data {
+              id
+              author {
+                id
+                username
+              }
+              title
+              slug
+              category {
+                name
+                slug
+                parent_category {
+                  name
+                  slug
+                }
+              }
+              poster
+              tags
+              body
+              views
+              created_at
+              updated_at
+            }
           }
-        }
-        poster
-        tags
-        body
-        views
-        created_at
-        updated_at
-      }
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-posts.value = data.value?.posts.data;
-console.log(data);
+        }`,
+    }),
+  });
+  posts.value = data?.posts.data;
+  console.log(data, posts);
+} catch (err) {
+  console.log(err);
+}
 </script>
 
 <style lang="scss" scoped>

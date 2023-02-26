@@ -16,28 +16,34 @@
 
 <script setup>
 const tags = ref({});
-const query = gql`
-  query getAllCategories {
-    category(parent_id: 0) {
-      id
-      name
-      parent_category {
-        id
-        name
-        slug
-      }
-      sub_categories(first: 12) {
-        data {
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+      query getWidgetCategories {
+        category(parent_id: 0) {
           id
           name
-          slug
+          parent_category {
+            id
+            name
+            slug
+          }
+          sub_categories(first: 12) {
+            data {
+              id
+              name
+              slug
+            }
+          }
         }
-      }
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-tags.value = data.value?.category;
+      }`,
+    }),
+  });
+  tags.value = data?.categories.data;
+} catch (err) {
+  console.log(err);
+}
 </script>
 
 <style lang="scss" scoped>

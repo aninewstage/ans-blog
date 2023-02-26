@@ -1,5 +1,9 @@
-import Cookies from "js-cookie";
 export default defineNuxtConfig({
+    runtimeConfig: {
+        public: {
+            GRAPHQL_URL: process.env.GRAPHQL_URL
+        }
+    },
     nitro: {
         prerender: {
             crawlLinks: true,
@@ -8,6 +12,7 @@ export default defineNuxtConfig({
             ]
         }
     },
+
     imports: {
         dirs: ['./stores'],
     },
@@ -31,11 +36,7 @@ export default defineNuxtConfig({
                 // <script src="https://myawesome-lib.js"></script>
                 { src: 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', async: true },
                 { src: 'https://kit.fontawesome.com/2f51628552.js', crossorigin: "anonymous" },
-<<<<<<< HEAD
-                { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js', body: true },
-=======
-                { src: '/js/jquery.js', body: true, type: "text/javascript" },
->>>>>>> fe565bd (cache)
+                { src: '/js/jquery.js', body: true },
                 { src: '/js/vendors.js', body: true },
                 { src: '/js/scripts.js', body: true },
 
@@ -47,7 +48,7 @@ export default defineNuxtConfig({
             ]
         }
     },
-    modules: ['@nuxtjs/apollo', '@pinia/nuxt', 'nuxt-simple-sitemap'],
+    modules: ['@pinia/nuxt', 'nuxt-simple-sitemap'],
 
     pinia: {
         autoImports: ['defineStore', 'acceptHMRUpdate'],
@@ -55,11 +56,5 @@ export default defineNuxtConfig({
 
     sitemap: {
         hostname: 'https://blogs.aninewstage.org',
-    },
-    apollo: {
-        autoImports: true,
-        clients: {
-            default: './apollo/default.ts'
-        },
     },
 })

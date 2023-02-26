@@ -6,18 +6,7 @@
         <div class="row">
           <div class="mnmd-main-col" role="main">
             <article
-              class="
-                mnmd-block
-                post post--single post-10
-                type-post
-                status-publish
-                format-standard
-                has-post-thumbnail
-                hentry
-                category-abroad
-                tag-landscape
-                cat-5
-              "
+              class="mnmd-block post post--single post-10 type-post status-publish format-standard has-post-thumbnail hentry category-abroad tag-landscape cat-5"
               itemscope
               itemtype="http://schema.org/Article"
             >
@@ -177,10 +166,7 @@
                           <li>
                             <a
                               href="#"
-                              class="
-                                sharing-btn sharing-btn-primary
-                                facebook-btn facebook-theme-bg
-                              "
+                              class="sharing-btn sharing-btn-primary facebook-btn facebook-theme-bg"
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Share on Facebook"
@@ -193,10 +179,7 @@
                           <li>
                             <a
                               href="#"
-                              class="
-                                sharing-btn sharing-btn-primary
-                                twitter-btn twitter-theme-bg
-                              "
+                              class="sharing-btn sharing-btn-primary twitter-btn twitter-theme-bg"
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Share on Twitter"
@@ -209,10 +192,7 @@
                           <li>
                             <a
                               href="#"
-                              class="
-                                sharing-btn
-                                pinterest-btn pinterest-theme-bg
-                              "
+                              class="sharing-btn pinterest-btn pinterest-theme-bg"
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Share on Pinterest"
@@ -224,10 +204,7 @@
                           <li>
                             <a
                               href="#"
-                              class="
-                                sharing-btn
-                                googleplus-btn googleplus-theme-bg
-                              "
+                              class="sharing-btn googleplus-btn googleplus-theme-bg"
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Share on Google+"
@@ -297,50 +274,56 @@ const store = useWidgetStore();
 const post = ref({});
 const route = useRoute();
 const tags = ref();
-const query = gql`
-  query getPosts {
-    postResolver(slug: "${route.params?.slug}") {
-      id
-      title
-      slug
-      body
-      tags
-      poster
-      author {
-        username
-        email
-        info {
-          bio
-          avatar
-          facebook
-          twitter
-          telegram
-        }
-      }
-      category {
-        parent_category{
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+      query getPosts {
+        postResolver(slug: "${route.params?.slug}") {
           id
-          name
+          title
           slug
-        }
-        id
-        name
-        sub_categories(first: 10) {
-          data {
+          body
+          tags
+          poster
+          author {
+            username
+            email
+            info {
+              bio
+              avatar
+              facebook
+              twitter
+              telegram
+            }
+          }
+          category {
+            parent_category{
+              id
+              name
+              slug
+            }
+            id
             name
+            sub_categories(first: 10) {
+              data {
+                name
+                slug
+              }
+            }
             slug
           }
+          views
+          created_at
         }
-        slug
-      }
-      views
-      created_at
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-post.value = data.value?.postResolver;
-tags.value = post.value?.tags?.split(",");
+      }`,
+    }),
+  });
+  post.value = data?.postResolver;
+  tags.value = post?.tags?.split(",");
+} catch (err) {
+  console.log(err);
+}
 
 store.getRandomPosts();
 

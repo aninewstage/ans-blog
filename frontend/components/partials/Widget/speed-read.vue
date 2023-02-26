@@ -24,21 +24,27 @@
 
 <script setup>
 const posts = ref({});
-const query = gql`
-  query getPosts {
-    posts(first: 4, random: true) {
-      data {
-        id
-        title
-        slug
-        poster
-        created_at
-      }
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-posts.value = data.value?.posts.data;
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+      query getSpeedReadPosts {
+        posts(first: 4, random: true) {
+          data {
+            id
+            title
+            slug
+            poster
+            created_at
+          }
+        }
+      }`,
+    }),
+  });
+  posts.value = data?.posts.data;
+} catch (err) {
+  console.log(err);
+}
 </script>
 
 <style lang="scss" scoped>

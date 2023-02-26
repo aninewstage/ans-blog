@@ -2,10 +2,7 @@
   <div class="site-content">
     <Title>Author List</Title>
     <div
-      class="
-        mnmd-block mnmd-block--fullwidth mnmd-block--contiguous
-        page-heading page-heading--has-background page-heading--inverse
-      "
+      class="mnmd-block mnmd-block--fullwidth mnmd-block--contiguous page-heading page-heading--has-background page-heading--inverse"
     >
       <div class="background-img background-img--darkened">
         <div class="background-animes-pattern" style=""></div>
@@ -73,10 +70,7 @@
               </form>
             </div>
             <div
-              class="
-                mnmd-widget
-                widget widget-subscribe widget-subscribe--stack-bottom
-              "
+              class="mnmd-widget widget widget-subscribe widget-subscribe--stack-bottom"
             >
               <div class="widget-subscribe__inner">
                 <div class="subscribe-form subscribe-form--center">
@@ -195,34 +189,40 @@ useServerSeoMeta({
   twitterCard: "summary_large_image",
 });
 const authors = ref({});
-const query = gql`
-  query getUsers {
-    users(role: "author") {
-      paginatorInfo {
-        total
-        perPage
-        count
-        currentPage
-        lastItem
-        lastPage
-      }
-      data {
-        id
-        info {
-          bio
-          facebook
-          telegram
-          avatar
-          name
-          twitter
+try {
+  const { data } = await useNuxtApp().$apiFetch("/graphql", {
+    body: JSON.stringify({
+      query: `
+      query getUsers {
+        users(role: "author") {
+          paginatorInfo {
+            total
+            perPage
+            count
+            currentPage
+            lastItem
+            lastPage
+          }
+          data {
+            id
+            info {
+              bio
+              facebook
+              telegram
+              avatar
+              name
+              twitter
+            }
+            username
+            email
+            created_at
+          }
         }
-        username
-        email
-        created_at
-      }
-    }
-  }
-`;
-const { data } = await useAsyncQuery(query);
-authors.value = data.value?.users;
+      }`,
+    }),
+  });
+  authors.value = data?.users;
+} catch (err) {
+  console.log(err);
+}
 </script>
