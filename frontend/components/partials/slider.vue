@@ -53,7 +53,6 @@ try {
     }),
   });
   posts.value = data?.posts.data;
-  console.log(data, posts);
 } catch (err) {
   console.log(err);
 }

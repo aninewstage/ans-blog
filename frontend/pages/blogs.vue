@@ -17,7 +17,7 @@
     <div class="mnmd-block mnmd-block--fullwidth">
       <div class="container">
         <div class="posts-listing">
-          <div class="row row--space-between" v-if="posts.length > 1">
+          <div class="row row--space-between" v-if="posts.length > 0">
             <PartialsCardPost
               v-for="{
                 id,

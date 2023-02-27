@@ -275,7 +275,6 @@ try {
     }),
   });
   categories.value = data?.categories.data;
-  console.log(data, "from header");
 } catch (err) {
   console.log(err);
 }

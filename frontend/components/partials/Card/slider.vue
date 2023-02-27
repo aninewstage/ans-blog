@@ -30,7 +30,7 @@
     </div>
     <NuxtLink :to="'/view/' + props.post?.slug" class="link-overlay"></NuxtLink>
     <NuxtLink
-      :to="hasParentCategory(props?.category)"
+      :to="hasParentCategory(props?.category) || ''"
       class="post__cat post__cat--bg cat-theme-bg overlay-item--top-left"
       >{{ props.post?.category.name }}</NuxtLink
     >
@@ -40,11 +40,9 @@
 <script setup>
 const props = defineProps({
   post: {
-    type: Object,
     required: true,
   },
 });
-console.log(props.post);
 </script>
 
 <style scoped>

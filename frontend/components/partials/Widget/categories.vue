@@ -24,23 +24,11 @@ try {
         category(parent_id: 0) {
           id
           name
-          parent_category {
-            id
-            name
-            slug
-          }
-          sub_categories(first: 12) {
-            data {
-              id
-              name
-              slug
-            }
-          }
         }
       }`,
     }),
   });
-  tags.value = data?.categories.data;
+  tags.value = data?.category;
 } catch (err) {
   console.log(err);
 }
