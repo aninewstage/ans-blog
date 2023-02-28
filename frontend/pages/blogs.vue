@@ -42,10 +42,15 @@
               :category="category"
             />
           </div>
-          <div v-else class="row" style="text-align: center">
+          <div v-else-if="route.query.s" class="row" style="text-align: center">
             <h4>
               There is no blog for this search (
               <span style="color: red">{{ route.query.s }}</span> )
+            </h4>
+          </div>
+          <div v-else class="row" style="text-align: center">
+            <h4>
+              Loading...
             </h4>
           </div>
         </div>

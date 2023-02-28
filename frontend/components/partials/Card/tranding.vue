@@ -32,7 +32,7 @@
             >{{ moment(props?.created_at).format("MMMM Do YYYY") }}</time
           >
           <a href="#single-url"
-            ><i class="mdicon mdicon-chat_bubble_outline"></i>21</a
+            ><i class="fas fa-eye"></i>{{ props?.views ?? "0" }}</a
           >
         </div>
       </div>
@@ -50,6 +50,7 @@ const props = defineProps({
   poster: String,
   tags: String,
   body: String,
+  views: String,
   category: Object,
   created_at: String,
 });

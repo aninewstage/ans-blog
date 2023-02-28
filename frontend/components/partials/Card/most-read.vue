@@ -2,7 +2,7 @@
   <div class="col-xs-12 col-sm-4">
     <article class="cat-1">
       <div class="media">
-        <div class="media-left"><span class="index">1.</span></div>
+        <div class="media-left"><span class="index">.</span></div>
         <div class="post__text media-body">
           <NuxtLink
             :to="hasParentCategory(props?.category)"
@@ -15,8 +15,9 @@
             }}</NuxtLink>
           </h3>
           <div class="post__meta">
+            <span>By {{ props?.author.username }}</span>
             <a href="#single-url"
-              ><i class="mdicon mdicon-chat_bubble_outline"></i>21 comments</a
+              ><i class="fas fa-eye"></i>{{ props?.views ?? "0" }}</a
             >
           </div>
         </div>
@@ -35,6 +36,7 @@ const props = defineProps({
   poster: String,
   tags: String,
   body: String,
+  views: String,
   category: Object,
   created_at: String,
 });

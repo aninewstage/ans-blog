@@ -8,8 +8,6 @@
       <div class="overlap-background"></div>
 
       <PartialsSlider />
-      <div class="spacer-xs"></div>
-      <PartialsNewsMarquee />
     </div>
     <!-- .mnmd-block -->
     <PartialsAds1 />

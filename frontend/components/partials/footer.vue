@@ -23,7 +23,7 @@
             <li><NuxtLink to="/cookie">Cookie</NuxtLink></li>
             <li><NuxtLink to="/terms">Terms</NuxtLink></li>
             <li><a href="">FAQ</a></li>
-            <li><a href="">Sitemap</a></li>
+            <li><a href="/sitemap.xml">Sitemap</a></li>
           </ul>
         </nav>
       </div>

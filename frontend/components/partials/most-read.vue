@@ -20,6 +20,7 @@
             poster,
             tags,
             body,
+            views,
             created_at,
           } in posts"
           :key="id"
@@ -30,6 +31,7 @@
           :slug="slug"
           :tags="tags"
           :body="body"
+          :views="views"
           :category="category"
           :created_at="created_at"
         />
@@ -67,6 +69,7 @@ try {
             poster
             tags
             body
+            views
             created_at
             updated_at
           }

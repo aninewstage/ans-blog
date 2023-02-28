@@ -12,8 +12,8 @@
     <div class="post__text inverse-text">
       <div class="post__text-wrap">
         <div class="post__text-inner">
-          <h3 class="post__title typescale-4">
-            {{ removeTags(props.post?.body ?? "Testing").substring(0, 30) }}
+          <h3 class="post__title typescale-2">
+            {{ removeTags(props.post?.title ?? "Testing") }}
           </h3>
           <div class="post__meta">
             <span class="entry-author"

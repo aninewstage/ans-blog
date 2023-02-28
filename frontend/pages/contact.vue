@@ -26,7 +26,7 @@
           <div class="mnmd-main-col">
             <div class="single-content">
               <div class="typography-copy">
-                <h3>Send us an Email</h3>
+                <h3>Send us an Email ( <span style="color:red;">Features in Progress</span> )</h3>
                 <form>
                   <div class="row">
                     <div class="col-sm-4 form-group">
@@ -76,20 +76,6 @@
                         aria-required="true"
                       />
                     </div>
-                    <div class="col-sm-4 form-group">
-                      <label for="contactform-service">Services</label
-                      ><select
-                        id="contactform-service"
-                        name="contactform-service"
-                        class="form-control"
-                      >
-                        <option value="">-- Select One --</option>
-                        <option value="Wordpress">Wordpress</option>
-                        <option value="PHP / MySQL">PHP / MySQL</option>
-                        <option value="HTML5 / CSS3">HTML5 / CSS3</option>
-                        <option value="Graphic Design">Graphic Design</option>
-                      </select>
-                    </div>
                   </div>
                   <div class="form-group">
                     <label for="contactform-message"
@@ -110,6 +96,7 @@
                       id="contactform-submit"
                       name="contactform-submit"
                       value="submit"
+                      disabled
                     >
                       Send Message
                     </button>
@@ -129,18 +116,13 @@
                   ><span> Postal Address</span>
                 </dt>
                 <dd>
-                  PO Box 16122 Collins Street West<br />Victoria 8007 Australia
+                  Somewhere in <br />Myanmar
                 </dd>
-                <dt>
-                  <i class="mdicon mdicon-mail_outline"></i>
-                  <span>Envato HQ</span>
-                </dt>
-                <dd>121 King Street, Melbourne<br />Victoria 3000 Australia</dd>
                 <dt>
                   <i class="mdicon mdicon-mail_outline"></i>
                   <span>Business Phone</span>
                 </dt>
-                <dd>+61 3 8376 6284</dd>
+                <dd>+95 9268201071</dd>
               </dl>
             </div>
           </div>

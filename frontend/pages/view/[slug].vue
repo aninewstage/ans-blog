@@ -94,14 +94,7 @@
                         moment(post?.created_at).format("MMMM Do YYYY")
                       }}</time
                     >
-                    <time
-                      class="updated"
-                      datetime="2016-03-25T17:37:06"
-                      title="March 25, 2016, 5:37 pm"
-                      >{{
-                        moment(post?.updated_at).format("MMMM Do YYYY")
-                      }}</time
-                    >
+                    <span><i class="fas fa-eye"></i>{{ post?.views ?? "0" }}</span>
                   </div>
                 </header>
                 <div
@@ -159,73 +152,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="entry-interaction entry-interaction--horizontal">
-                    <div class="entry-interaction__left">
-                      <div class="post-sharing post-sharing--simple">
-                        <ul>
-                          <li>
-                            <a
-                              href="#"
-                              class="sharing-btn sharing-btn-primary facebook-btn facebook-theme-bg"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Share on Facebook"
-                              ><i class="mdicon mdicon-facebook"></i
-                              ><span class="sharing-btn__text">Share</span></a
-                            >
-                          </li>
-                          <!--
-					-->
-                          <li>
-                            <a
-                              href="#"
-                              class="sharing-btn sharing-btn-primary twitter-btn twitter-theme-bg"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Share on Twitter"
-                              ><i class="mdicon mdicon-twitter"></i
-                              ><span class="sharing-btn__text">Tweet</span></a
-                            >
-                          </li>
-                          <!--
-					-->
-                          <li>
-                            <a
-                              href="#"
-                              class="sharing-btn pinterest-btn pinterest-theme-bg"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Share on Pinterest"
-                              ><i class="mdicon mdicon-pinterest-p"></i
-                            ></a>
-                          </li>
-                          <!--
-					-->
-                          <li>
-                            <a
-                              href="#"
-                              class="sharing-btn googleplus-btn googleplus-theme-bg"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Share on Google+"
-                              ><i class="mdicon mdicon-google-plus"></i
-                            ></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="entry-interaction__right">
-                      <a
-                        href="#comment"
-                        class="comments-count entry-action-btn"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="17 comments"
-                        ><i class="mdicon mdicon-chat_bubble"></i
-                        ><span>17</span></a
-                      >
-                    </div>
-                  </div>
                 </footer>
               </div>
               <!-- .single-content -->
@@ -238,6 +164,7 @@
               :username="post?.author?.username"
               :email="post?.author?.email"
               :created_at="post?.author?.created_at"
+              :style="'list-style: none;'"
             />
             <!-- Posts navigation -->
             <PartialsWidgetNavigationPost :category="post?.category" />
@@ -336,3 +263,7 @@ useServerSeoMeta({
   twitterCard: () => "summary_large_image",
 });
 </script>
+
+<style scoped>
+
+</style>

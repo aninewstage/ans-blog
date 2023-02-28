@@ -36,15 +36,15 @@
       <a
         class="mnmd-pagination__item mnmd-pagination__item-next"
         :href="`?page=` + getPagination(props.pagination).next"
-        v-if="route.query.s"
+        v-if="route.query.s && props.pagination.count > 20"
         ><i class="mdicon mdicon-arrow_forward"></i
       ></a>
       <a
         class="mnmd-pagination__item mnmd-pagination__item-next"
+        v-if="props.pagination.count > 20"
         :href="
           `?s=${route.query.s}&page=` + getPagination(props.pagination).next
         "
-        v-else
         ><i class="mdicon mdicon-arrow_forward"></i
       ></a>
     </div>
@@ -56,7 +56,6 @@ const props = defineProps({
   pagination: Object,
 });
 const route = useRoute();
-console.log(props.pagination);
 // helper function to create pagination
 const getPagination = ({ currentPage, count, total, lastPage }) => {
   // Get previous page number with `1` as the lowest
