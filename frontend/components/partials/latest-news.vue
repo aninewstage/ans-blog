@@ -22,7 +22,7 @@
                   body,
                   views,
                   created_at,
-                } in posts"
+                } in (index, posts)"
                 :key="id"
                 :id="id"
                 :author="author"
@@ -45,6 +45,8 @@
           role="complementary"
         >
           <PartialsWidgetSpeedRead />
+
+          <PartialsAdsBanner300x250 :key="useRoute().fullPath" />
           <!-- .widget -->
           <PartialsWidgetPopularPost />
           <!-- .widget -->

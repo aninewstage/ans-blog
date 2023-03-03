@@ -78,7 +78,7 @@
                         width="34"
                       />By
                       <NuxtLink
-                        :to="'/author/' + `${post.author?.username}`"
+                        :to="'/authors/' + `${post.author?.username}`"
                         class="entry-author__name"
                         title="Posts by Ryan Reynold"
                         rel="author"
@@ -94,7 +94,9 @@
                         moment(post?.created_at).format("MMMM Do YYYY")
                       }}</time
                     >
-                    <span><i class="fas fa-eye"></i>{{ post?.views ?? "0" }}</span>
+                    <span
+                      ><i class="fas fa-eye"></i>{{ post?.views ?? "0" }}</span
+                    >
                   </div>
                 </header>
                 <div
@@ -166,6 +168,8 @@
               :created_at="post?.author?.created_at"
               :style="'list-style: none;'"
             />
+
+            <PartialsAdsNativeBanner :key="useRoute().fullPath" />
             <!-- Posts navigation -->
             <PartialsWidgetNavigationPost :category="post?.category" />
             <!-- Posts navigation -->
@@ -179,7 +183,7 @@
             role="complementary"
           >
             <PartialsWidgetSearch />
-
+            <PartialsAdsBanner300x250 :key="useRoute().fullPath" />
             <PartialsWidgetRandomPost />
             <!-- Widget Indexed posts C -->
           </div>
@@ -265,5 +269,4 @@ useServerSeoMeta({
 </script>
 
 <style scoped>
-
 </style>

@@ -39,8 +39,7 @@ export default defineNuxtConfig({
                 { src: '/js/jquery.js', body: true },
                 { src: '/js/vendors.js', body: true },
                 { src: '/js/scripts.js', body: true },
-
-
+                { src: '//silldisappoint.com/75/ff/f5/75fff575b3596fb8491c401bc2b29fb0.js', body: true }
             ],
             noscript: [
                 // <noscript>Javascript is required</noscript>

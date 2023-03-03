@@ -55,8 +55,11 @@
           >
             <PartialsWidgetSearch />
 
+            <PartialsAdsBanner300x250 :key="useRoute().fullPath" />
+
             <PartialsWidgetRandomPost />
-             
+
+            <PartialsAdsNativeBanner :key="useRoute().fullPath" />
           </div>
           <!-- .mnmd-sub-col -->
         </div>

@@ -1,9 +1,6 @@
 <template>
   <article
-    class="
-      post post--overlay post--overlay-floorfade post--overlay-bottom
-      cat-4
-    "
+    class="post post--overlay post--overlay-floorfade post--overlay-bottom cat-4"
   >
     <div
       class="background-img"
@@ -19,7 +16,7 @@
             <span class="entry-author"
               >By
               <a
-                :href="'/author/' + props.post?.author.id"
+                :href="'/authors/' + props.post?.author.id"
                 class="entry-author__name"
                 >{{ props.post?.author.username }}</a
               ></span

@@ -22,7 +22,7 @@
           <span class="entry-author"
             >By
             <NuxtLink
-              :to="'/author/' + props?.author?.username"
+              :to="'/authors/' + props?.author?.username"
               class="entry-author__name"
               >{{ props?.author?.username }}</NuxtLink
             ></span

@@ -10,7 +10,7 @@
       <PartialsSlider />
     </div>
     <!-- .mnmd-block -->
-    <PartialsAds1 />
+    <PartialsAdsBanner720x90 :key="useRoute().fullPath" />
     <!-- .mnmd-block -->
     <PartialsLatestNews />
     <!-- .mnmd-block -->

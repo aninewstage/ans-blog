@@ -4,20 +4,13 @@
   <div id="mnmd-sticky-header" class="sticky-header js-sticky-header">
     <!-- Navigation bar -->
     <nav
-      class="
-        navigation-bar navigation-bar--inverse navigation-bar--fullwidth
-        hidden-xs hidden-sm
-      "
+      class="navigation-bar navigation-bar--inverse navigation-bar--fullwidth hidden-xs hidden-sm"
     >
       <div class="navigation-bar__inner">
         <div class="navigation-bar__section">
           <a
             href="#mnmd-offcanvas-primary"
-            class="
-              offcanvas-menu-toggle
-              navigation-bar-btn
-              js-mnmd-offcanvas-toggle
-            "
+            class="offcanvas-menu-toggle navigation-bar-btn js-mnmd-offcanvas-toggle"
             ><i class="mdicon mdicon-menu icon--2x"></i
           ></a>
           <div class="site-logo header-logo">
@@ -32,16 +25,25 @@
             class="navigation navigation--main navigation--inline"
           >
             <li><NuxtLink to="/">Home</NuxtLink></li>
-            <li class="menu-item-has-children">
-              <a href="#">Categories</a>
-              <ul class="sub-menu">
-                <li><NuxtLink to="/news">News</NuxtLink></li>
-                <li><NuxtLink to="/facts">Facts</NuxtLink></li>
-                <li><NuxtLink to="/reviews">Reviews</NuxtLink></li>
-                <li><NuxtLink to="/recaps">Recaps</NuxtLink></li>
+            <li><NuxtLink to="/blogs">Blogs</NuxtLink></li>
+            <li
+              :class="hasMenuItem(category)"
+              v-for="category in categories"
+              :key="category.id"
+            >
+              <NuxtLink :to="`/${category.name}`">{{ category.name }}</NuxtLink>
+              <ul class="sub-menu" v-if="hasMenuItem(category)">
+                <li
+                  v-for="sub_category in category.sub_categories.data"
+                  :key="sub_category.name"
+                >
+                  <NuxtLink :to="`/${category.name}/${sub_category.slug}`">{{
+                    capitalize(sub_category.name)
+                  }}</NuxtLink>
+                </li>
               </ul>
             </li>
-            <li><NuxtLink to="/author">Authors</NuxtLink></li>
+            <li><NuxtLink to="/authors">Authors</NuxtLink></li>
             <li><NuxtLink to="/contact">Contact</NuxtLink></li>
           </ul>
         </div>

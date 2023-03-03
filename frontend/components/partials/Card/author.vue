@@ -18,7 +18,7 @@
       <div class="author-box__text">
         <div class="author-name meta-font">
           <NuxtLink
-            :to="'/author/' + `${props?.username}`"
+            :to="'/authors/' + `${props?.username}`"
             title="Posts by Ryan Reynold"
             rel="author"
             >{{ props?.username }}</NuxtLink
@@ -29,10 +29,7 @@
         </div>
         <div class="author-info">
           <div
-            class="
-              row row--space-between row--flex row--vertical-center
-              grid-gutter-20
-            "
+            class="row row--space-between row--flex row--vertical-center grid-gutter-20"
           >
             <div class="author-socials col-xs-12 col-sm-6">
               <ul class="list-unstyled list-horizontal list-space-sm">
@@ -73,7 +70,7 @@
 
 <script setup>
 const props = defineProps({
-  id: Number,
+  id: String,
   username: String,
   email: String,
   info: Object,

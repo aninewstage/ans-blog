@@ -130,7 +130,7 @@
                   </li>
                 </ul>
               </li>
-              <li><NuxtLink to="/author">Authors</NuxtLink></li>
+              <li><NuxtLink to="/authors">Authors</NuxtLink></li>
               <li><NuxtLink to="/contact">Contact</NuxtLink></li>
             </ul>
           </div>

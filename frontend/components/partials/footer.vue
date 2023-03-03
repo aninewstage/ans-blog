@@ -4,11 +4,7 @@
 <template>
   <footer class="site-footer site-footer--inverse inverse-text">
     <div
-      class="
-        site-footer__section
-        site-footer__section--seperated
-        site-footer__section--bordered
-      "
+      class="site-footer__section site-footer__section--seperated site-footer__section--bordered"
     >
       <div class="container">
         <nav class="footer-menu footer-menu--bold">
@@ -63,8 +59,8 @@
         </div>
         <div class="text-center">
           <p style="font-size: 10px" class="mt-4">
-            This site is protected by reCAPTCHA and the Google Privacy Policy
-            and Terms of Service apply.
+            Developed With <i class="fas fa-heart" style="color: red"></i> By
+            <a href="https://www.facebook.com/jionsix.hacknh">j6dr23n</a>
           </p>
         </div>
       </div>

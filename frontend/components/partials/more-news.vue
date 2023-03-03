@@ -56,6 +56,7 @@
           <!-- Widget Social counter -->
           <PartialsWidgetCategories />
           <!-- .widget -->
+          <PartialsAdsNativeBanner :key="useRoute().fullPath" />
         </div>
         <!-- .mnmd-sub-col -->
       </div>
